@@ -6,13 +6,12 @@ require 'fileutils'
 require 'rouge'
 require 'erb'
 require 'rbconfig'
-
+require 'byebug'
 require 'example'
-require 'specify'
 
 I18n.enforce_available_locales = false
 
-class RspecHtmlFormatter < RSpec::Core::Formatters::BaseFormatter
+class RspecYahFormatter < RSpec::Core::Formatters::BaseFormatter
   RSpec::Core::Formatters.register self, :example_passed, :example_failed,
                                    :example_pending
 
@@ -21,6 +20,9 @@ class RspecHtmlFormatter < RSpec::Core::Formatters::BaseFormatter
     @passed = 0
     @failed = 0
     @pending = 0
+    unless io_standard_output.is_a?(File)
+      raise 'You should specify a file with the --out option, STDOUT cannot be used with this formatter'
+    end
     @io_standard_output = io_standard_output
     copy_resources
   end
@@ -53,7 +55,6 @@ class RspecHtmlFormatter < RSpec::Core::Formatters::BaseFormatter
   # Calculates the total duration and an array used by jscharts with the
   # format [[0, duration1], [1, duration2], ... ]
   def calculate_durations
-    @examples = Specify.new(@examples).process
     duration_values = @examples.map(&:run_time)
     duration_values << duration_values.first if duration_values.size == 1
 

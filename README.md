@@ -1,24 +1,19 @@
-# PLEASE NOTE - This project is not being actively maintained at the moment - I am taking a break - not sure when I will return.
+# PLEASE NOTE - This is a fork from [rspec_reports_formatter](https://github.com/kingsleyh/rspec_reports_formatter)
 
 # Publish pretty [rspec](http://rspec.info/) reports
 
-This is a ruby Rspec custom formatter which generates pretty html reports showing the results of rspec tests. This gem was build to use Rspec 3.x.x If you want to use it with older
-versions of Rspec then you should use the rspec_reports_formatter 0.2.x (2.8.0 branch)
-
-* For Rspec 2.x.x please use rspec_reports_formatter version starting with 0.2.x
-* For Rspec 3.x.x please use the rspec_reports_formatter version starting with 0.3.x
-
+This is a ruby Rspec custom formatter which generates pretty html reports showing the results of rspec tests. This gem was build to use Rspec 3.x.x
 
 ## Install
 
 ```
-  gem install rspec_html_formatter -v 0.3.1
+  gem install rspec_yah_formatter -v 0.0.1
 ```
 
 ideally just add it to your bundler Gemfile as follows:
 
 ```ruby
- gem 'rspec_html_formatter','~> 0.3.1'
+ gem 'rspec_yah_formatter','~> 0.0.1'
 ```
 
 ## Use
@@ -27,28 +22,22 @@ When running your rspec tests with rspec 3.0.0 just use the custom formatter:
 This should work:
 
 ```
- rspec -f RspecHtmlFormatter spec
+ rspec -f RspecYahFormatter spec
 ```
 
 If not you can explicitly add in a require as follows:
 
 ```
- rspec --require rspec_html_formatter.rb --format RspecHtmlFormatter spec
+ rspec --require rspec_yah_formatter.rb --format RspecYahFormatter spec
 ```
 
-![example overview report]
-(https://raw.githubusercontent.com/kingsleyh/rspec_reports_formatter/master/.README/rspec_reports_overview.png)
 
 ![example report]
-(https://raw.githubusercontent.com/kingsleyh/rspec_reports_formatter/master/.README/rspec_reports_report.png)
+This report is inspired in [rspec_reports_formatter](https://github.com/kingsleyh/rspec_reports_formatter), with some differences:
 
-If you want to provide some generated documentation for the tests you can put comments in the rspec tests like this:
-
-```ruby
-  #-> Given I have ordered a vegetarian pizza
-  #-> When I eat the pizza
-  #-> Then my tummy is full
-
-```
-
-The #-> notation is picked up and passed through a Gherkin syntax highlighter. So it was designed to use with Given,When,Then. But in theory you can put other text there too.
+- All examples are shown in the same page. This makes it simpler, and also 
+avoids [this](https://github.com/kingsleyh/rspec_reports_formatter/issues/3)
+- **You can add images**. To do that, you have to create a png in the same folder where --out is, and name it `<spec-filename>-<line-with-error>.png`. The formatter will pick up the images automatically. It's quite restrictive, but this will be worked out later.
+- To avoid that the page is filled with stacktraces and images, errors are by default hidden, and you can show them by clicking on them.
+- This report only makes sense in html, so you must specify a file in `--out`when running rspec
+- Removed the "magic" Gherkin processing of the comments on the specs

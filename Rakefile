@@ -14,13 +14,13 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "rspec_html_formatter"
-  gem.homepage = "http://github.com/kingsleyh/rspec_reports_formatter"
+  gem.name = "rspec_yah_formatter"
+  gem.homepage = "http://github.com/dgmora/rspec_yah_formatter"
   gem.license = "MIT"
   gem.summary = %Q{Rspec custom formatter to generate pretty html results}
   gem.description = %Q{Rspec custom formatter to generate pretty html results}
-  gem.email = "kingsleyhendrickse@me.com"
-  gem.authors = ["Kingsley Hendrickse"]
+  gem.email = "david.garcia.mora@gmail.com"
+  gem.authors = ["Kingsley Hendrickse", "David Garcia"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
