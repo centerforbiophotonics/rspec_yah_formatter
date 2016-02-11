@@ -24,6 +24,9 @@
       }
 
       <%= Rouge::Themes::Github.render(:scope => '.highlight') %>
+      table tr {
+          cursor: pointer;
+      }
   </style>
 </head>
 <body>
@@ -111,10 +114,8 @@
                       <%= example.full_description %>
                   <% end %>
                 </div>
-                <div>
                   <% if example.has_exception? %>
-
-                      <div class="panel panel-danger">
+                      <div hidden class="panel panel-danger test-error">
                         <div class="panel-heading">
                           <h3 class="panel-title"><%= example.exception.klass %></h3>
                         </div>
@@ -124,8 +125,10 @@
                           <%= example.exception.highlighted_source %>
                         </div>
                       </div>
+                      <div hidden class="panel panel-default test-error">
+                        <img src="<%=example.screenshot%>">
+                      <div>
                   <% end %>
-                </div>
               </td>
               <td><%= example.duration %></td>
             </tr>
@@ -164,6 +167,10 @@
     myChart2.setAxisNameY('');
     myChart2.setAxisValuesNumberX(1);
     myChart2.draw();
+
+    $('table tr').click(function () {
+      $(this).find('.test-error').toggle();
+    });
 </script>
 
 

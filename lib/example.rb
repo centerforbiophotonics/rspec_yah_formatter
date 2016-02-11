@@ -3,7 +3,8 @@ require 'oopsy'
 
 class Example
 
-  attr_reader :description, :full_description, :run_time, :duration, :status, :exception, :file_path, :metadata, :spec
+  attr_reader :description, :full_description, :run_time, :duration, :status,
+              :exception, :file_path, :metadata, :spec, :screenshot
 
   def initialize(example)
     @description = example.description
@@ -15,6 +16,9 @@ class Example
     @metadata = example.metadata
     @file_path = @metadata[:file_path]
     @exception = Oopsy.new(example.exception, @file_path)
+    filename = File.basename(@metadata[:file_path])
+    line_number = @metadata[:line_number]
+    @screenshot = "#{filename}-#{line_number}.png"
     @spec = nil
   end
 

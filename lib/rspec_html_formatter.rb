@@ -16,16 +16,13 @@ class RspecHtmlFormatter < RSpec::Core::Formatters::BaseFormatter
   RSpec::Core::Formatters.register self, :example_passed, :example_failed,
                                    :example_pending
 
-  REPORT_PATH = './rspec_html_reports'.freeze
-
-  def initialize
-    create_reports_dir
-    create_resources_dir
-    copy_resources
+  def initialize(io_standard_output)
     @examples = []
     @passed = 0
     @failed = 0
     @pending = 0
+    @io_standard_output = io_standard_output
+    copy_resources
   end
 
   def example_passed(notification)
@@ -45,7 +42,7 @@ class RspecHtmlFormatter < RSpec::Core::Formatters::BaseFormatter
 
   def close(notification)
     calculate_durations
-    File.open("#{REPORT_PATH}/report.html", 'w') do |f|
+    File.open(@io_standard_output, 'w') do |f|
       template_file = File.read(File.dirname(__FILE__) + '/../templates/report.erb')
       f.puts ERB.new(template_file).result(binding)
     end
@@ -60,21 +57,11 @@ class RspecHtmlFormatter < RSpec::Core::Formatters::BaseFormatter
     duration_values = @examples.map(&:run_time)
     duration_values << duration_values.first if duration_values.size == 1
 
-    @durations = @examples.each_with_index.map { |e, i| [i, e] }
+    @durations = duration_values.each_with_index.map { |e, i| [i, e] }
     @summary_duration = duration_values.inject(:+).to_s(:rounded, precision: 5)
   end
 
-  def create_reports_dir
-    FileUtils.rm_rf(REPORT_PATH) if File.exist?(REPORT_PATH)
-    FileUtils.mkpath(REPORT_PATH)
-  end
-
-  def create_resources_dir
-    file_path = REPORT_PATH + '/resources'
-    FileUtils.mkdir_p file_path unless File.exist?(file_path)
-  end
-
   def copy_resources
-    FileUtils.cp_r(File.dirname(__FILE__) + '/../resources', REPORT_PATH)
+    FileUtils.cp_r(File.dirname(__FILE__) + '/../resources', File.dirname(@io_standard_output))
   end
 end
