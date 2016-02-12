@@ -25,6 +25,8 @@ avoids [this](https://github.com/kingsleyh/rspec_reports_formatter/issues/3)
 - This report only makes sense in html, so you must specify a file in `--out`when running rspec
 - Removed the "magic" Gherkin processing of the comments on the specs
 
+Here is also the [Changelog](../../wiki/Changelog) and a [TODO list](../../wiki/TODO-list)
+
 ## Install
 
 This gem was build to use Rspec 3.x.x
