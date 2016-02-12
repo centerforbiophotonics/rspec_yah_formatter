@@ -1,3 +1,18 @@
+GIT
+  remote: https://github.com/mihael/jeweler.git
+  revision: ca94ec62ca7990a5c22ee0b378c5bba57ab7b0fd
+  branch: obsolete-safe-issue278
+  specs:
+    jeweler (2.0.1)
+      builder
+      bundler (>= 1.0)
+      git (>= 1.2.5)
+      github_api
+      highline (>= 1.6.15)
+      nokogiri (>= 1.5.10)
+      rake
+      rdoc
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -26,15 +41,6 @@ GEM
     hashie (3.2.0)
     highline (1.6.21)
     i18n (0.6.11)
-    jeweler (2.0.1)
-      builder
-      bundler (>= 1.0)
-      git (>= 1.2.5)
-      github_api
-      highline (>= 1.6.15)
-      nokogiri (>= 1.5.10)
-      rake
-      rdoc
     json (1.8.3)
     jwt (1.0.0)
     mini_portile (0.6.0)
@@ -80,7 +86,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (>= 4.1.4)
   bundler (~> 1.0)
-  jeweler (~> 2.0.1)
+  jeweler!
   rdoc (~> 3.12)
   rouge (>= 1.6.1)
   rspec (~> 3.0.0)
