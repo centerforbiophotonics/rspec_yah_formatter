@@ -18,7 +18,7 @@ class Example
     @exception = Oopsy.new(example.exception, @file_path)
     filename = File.basename(@metadata[:file_path])
     line_number = @metadata[:line_number]
-    @screenshot = "#{filename}-#{line_number}.png"
+    @screenshot = @metadata[:screenshot] || "#{filename}-#{line_number}.png"
     @spec = nil
   end
 
