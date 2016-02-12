@@ -6,7 +6,6 @@ require 'fileutils'
 require 'rouge'
 require 'erb'
 require 'rbconfig'
-require 'byebug'
 require 'example'
 
 I18n.enforce_available_locales = false
