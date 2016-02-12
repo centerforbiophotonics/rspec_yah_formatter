@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Kingsley Hendrickse", "David Garcia"]
-  s.date = "2016-02-11"
+  s.date = "2016-02-12"
   s.description = "Rspec custom formatter to generate pretty html results"
   s.email = "david.garcia.mora@gmail.com"
   s.extra_rdoc_files = [
@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
-    ".README/rspec_reports_report.png",
     ".document",
     ".rspec",
     "Gemfile",
@@ -30,6 +29,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/example.rb",
     "lib/oopsy.rb",
+    "lib/rspec_yah_formatter.rb",
     "resources/bootstrap-3.2.0-dist/css/bootstrap-theme-yeti.min.css",
     "resources/bootstrap-3.2.0-dist/css/bootstrap.min.css",
     "resources/bootstrap-3.2.0-dist/fonts/glyphicons-halflings-regular.eot",
