@@ -9,6 +9,7 @@
   <!-- Bootstrap -->
   <link href="resources/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="resources/bootstrap-3.2.0-dist/css/bootstrap-theme-yeti.min.css" rel="stylesheet">
+  <link href="resources/styles.css" rel="stylesheet">
 
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -18,20 +19,10 @@
   <script src="resources/jquery-1.11.1.min.js"></script>
   <script src="resources/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
   <script src="resources/jscharts.js"></script>
-  <style>
-      * {
-          font-size: 14px;
-      }
-
-      <%= Rouge::Themes::Github.render(:scope => '.highlight') %>
-      table tr {
-          cursor: pointer;
-      }
-  </style>
 </head>
+
 <body>
 <div class="container">
-
   <div class="bs-docs-section clearfix">
     <div class="row">
       <div class="col-lg-12">
@@ -97,7 +88,7 @@
         </thead>
         <tbody>
         <% @examples.each do |example| %>
-            <tr>
+            <tr <%= "class='collapsable' tabindex='1'" if example.has_exception? %> >
               <td><span class="label <%= example.klass %>"><%= example.status %></span></td>
               <td>
                 <div>
@@ -115,7 +106,7 @@
                   <% end %>
                 </div>
                   <% if example.has_exception? %>
-                      <div hidden class="panel panel-danger test-error">
+                      <div class="panel panel-danger">
                         <div class="panel-heading">
                           <h3 class="panel-title"><%= example.exception.klass %></h3>
                         </div>
@@ -169,10 +160,6 @@
     myChart2.setAxisNameY('');
     myChart2.setAxisValuesNumberX(1);
     myChart2.draw();
-
-    $('table tr').click(function () {
-      $(this).find('.test-error').toggle();
-    });
 </script>
 
 

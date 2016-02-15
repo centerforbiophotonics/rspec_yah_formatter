@@ -1,0 +1,19 @@
+  * {
+    font-size: 14px;
+  }
+
+  .collapsable {
+    cursor:pointer;
+  }
+
+  .collapsable:focus {
+    outline:none;
+  }
+
+  .collapsable:focus .panel-danger {
+    display: block;
+  }
+
+  .panel-danger {
+    display:none;
+  }
