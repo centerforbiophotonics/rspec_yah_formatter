@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "rspec_yah_formatter"
   gem.homepage = "http://github.com/dgmora/rspec_yah_formatter"
   gem.license = "MIT"
-  gem.summary = %Q{Rspec custom formatter to generate pretty html results}
-  gem.description = %Q{Rspec custom formatter to generate pretty html results}
+  gem.summary = %Q{Rspec html formatter to generate pretty results with images}
+  gem.description = %Q{Rspec html formatter to generate pretty results with images}
   gem.email = "david.garcia.mora@gmail.com"
   gem.authors = ["Kingsley Hendrickse", "David Garcia"]
   # dependencies defined in Gemfile
