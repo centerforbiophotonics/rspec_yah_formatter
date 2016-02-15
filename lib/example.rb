@@ -16,9 +16,7 @@ class Example
     @metadata = example.metadata
     @file_path = @metadata[:file_path]
     @exception = Oopsy.new(example.exception, @file_path)
-    filename = File.basename(@metadata[:file_path])
-    line_number = @metadata[:line_number]
-    @screenshot = @metadata[:screenshot] || "#{filename}-#{line_number}.png"
+    @screenshot = screenshot_path
     @spec = nil
   end
 
@@ -34,9 +32,17 @@ class Example
     @spec = spec
   end
 
-  def klass(prefix='label-')
-    class_map = {passed: "#{prefix}success", failed: "#{prefix}danger", pending: "#{prefix}warning"}
+  def klass(prefix = 'label-')
+    class_map = { passed: "#{prefix}success", failed: "#{prefix}danger", pending: "#{prefix}warning" }
     class_map[@status.to_sym]
   end
 
+  private
+
+  def screenshot_path
+    filename = File.basename(@metadata[:file_path])
+    line_number = @metadata[:line_number]
+    default_path = "#{filename}-#{line_number}.png"
+    File.exist?(default_path) ? default_path : @metadata[:screenshot]
+  end
 end

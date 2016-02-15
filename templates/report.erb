@@ -124,10 +124,12 @@
                           <h5><%= example.exception.backtrace_message %></h5>
                           <%= example.exception.highlighted_source %>
                         </div>
+                        <% if example.screenshot %>
+                          <div class="panel panel-default">
+                            <img src="<%= example.screenshot %>">
+                          <div>
+                        <% end %>
                       </div>
-                      <div hidden class="panel panel-default test-error">
-                        <img src="<%=example.screenshot%>">
-                      <div>
                   <% end %>
               </td>
               <td><%= example.duration %></td>
