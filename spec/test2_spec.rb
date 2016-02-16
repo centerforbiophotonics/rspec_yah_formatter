@@ -1,8 +1,24 @@
 require 'rspec'
-# require_relative '../lib/rspec_html_formatter'
+
+def fake_screenshot(metadata)
+  filename = File.basename(metadata[:file_path])
+  line_number = metadata[:line_number]
+  FileUtils.mkdir 'screenshots' unless File.exist? 'screenshots'
+  screenshot_name = "screenshots/#{filename}-#{line_number}.png"
+  FileUtils.cp(File.join(__dir__, 'something.png'), screenshot_name)
+  screenshot_name
+end
+
+RSpec.configure do |config|
+  config.after(:each) do |example|
+    if example.exception
+      screenshot_name = fake_screenshot(example.metadata)
+      example.metadata[:screenshot] = screenshot_name
+    end
+  end
+end
 
 describe 'The second Test' do
-
   it 'should do cool test stuff' do
     pending('coming soon')
     fail
@@ -13,26 +29,17 @@ describe 'The second Test' do
   end
 
   it 'should do superb test stuff' do
-    #-> Given there are some ships
-    #-> When I sail one
-    #-> Then it should go fast
     expect('ships').to eq 'ships'
   end
 
   it 'should do example stuff' do
     expect('apple').to eq 'apple'
     expect('pear').to eq 1
-    #-> Given I have some stuff to do
-    #-> And I like to do is wait here for a while
-    #-> Then I do it real good!!
   end
 
   it 'should do very cool test stuff' do
-    #-> Given I have some cars
     expect('cars').to eq 'cars'
-    #-> And I drive one of them
     expect('diesel').to eq 'diesels'
-    #-> Then I should go fast
     expect('apple').to eq 'apple'
   end
 
@@ -45,14 +52,11 @@ describe 'The second Test' do
   end
 
   it 'should do very rawesome test stuff' do
-        #-> Given I have some cars
     pending('give me a woop')
     fail
   end
 
   it 'should do insane and cool test stuff' do
     expect('ships').to eq 'ships'
-   end
-
-
+  end
 end
