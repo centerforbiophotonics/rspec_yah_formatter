@@ -42,8 +42,9 @@ class Example
       puts "The screenshot '#{@metadata[:screenshot]}' does not exist"
     end
 
-    path = Pathname.new(File.dirname(@report_folder))
-    Pathname.new(@metadata[:screenshot]).relative_path_from(path).to_s
+    report_dir = Pathname.new(File.expand_path(File.dirname(@report_folder)))
+    screenshot = Pathname.new(File.expand_path(@metadata[:screenshot]))
+    screenshot.relative_path_from(report_dir).to_s
   end
 
   def run_time
