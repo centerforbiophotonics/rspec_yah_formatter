@@ -68,3 +68,9 @@ RSpec.configure do |config|
   end
 end
 ```
+## Show me something
+
+*Generated with `spec/test2_spec.rb`*
+
+![example report]
+(https://raw.githubusercontent.com/dgmora/rspec_yah_formatter/master/.README/example.png)
