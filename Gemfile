@@ -10,5 +10,5 @@ group :development do
   gem "rspec", "~> 3.0.0"
   gem "rdoc", "~> 3.12"
   gem "bundler", "~> 1.0"
-  gem 'jeweler', git: 'https://github.com/mihael/jeweler.git', branch: 'obsolete-safe-issue278'
+  gem 'jeweler', "~> 2.1.1"
 end
