@@ -7,7 +7,7 @@ class Oopsy
     unless @exception.nil?
       @klass = @exception.class
       @message = @exception.message.encode('utf-8')
-      @backtrace = @exception.backtrace
+      @backtrace = Array(@exception.backtrace)
       @backtrace_message = @backtrace.select { |r| r.match(@file_path) }.join('').encode('utf-8')
       @highlighted_source = process_source
       @explanation = process_message
